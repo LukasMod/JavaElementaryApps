@@ -51,26 +51,27 @@ class TrafficLightSimulator implements Runnable {
 
         changed = true;
 
-        notify(); //sygnalizuje że światło się zmieniło
+        notify(); //sygnalizuje że światło  zmieniło się
     }
-//czeka na zmianę światła
+
+    //czeka na zmianę światła
     synchronized void waitForChange() {
         try {
             while (!changed)
                 wait(); //czeka na zmianę światła
             changed = false;
-        }
-        catch (InterruptedException exc) {
+        } catch (InterruptedException exc) {
             System.out.println(exc);
         }
     }
+
     //zwraca biężący kolor światła
     synchronized TrafficLightColor getColor() {
         return tlc;
     }
 
     //zatrzymuje sygnalizację
-    synchronized void cancel () {
+    synchronized void cancel() {
         stop = true;
     }
 }
